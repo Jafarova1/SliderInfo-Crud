@@ -1,0 +1,84 @@
+﻿@model SliderDetailVM
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<style>
+    .status-slider {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .status-true {
+        background-color: greenyellow;
+    }
+
+    .status-false {
+        background-color: orangered;
+    }
+
+    body {
+        background-color: #F4F5F7;
+    }
+
+</style>
+
+<div class="col-lg-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Slider Detail Table</h4>
+      
+            <div class="table-responsive pt-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Logo
+                            </th>
+                            <th>
+                                Created Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th class="desc">
+                                Description
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="~/images/@Model.Logo" alt="image" style="with:100px;height:70px" />
+                            </td>
+                            <td>
+                                @Model.CreatedDate
+                            </td>
+                            <td>
+                                <div class="status-slider @(Model.Status ? "status-true":"status-false")"></div>
+                            </td>
+                            <td>
+                                @Model.Title
+                            </td>
+                            <td>
+                                @Model.Description
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <br></br>
+            <a asp-action="Index" class="btn btn-outline-info btn-fw">Back</a>
+        </div>
+    </div>
+
+</div>
+

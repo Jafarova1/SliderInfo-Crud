@@ -1,0 +1,94 @@
+﻿@model List<SliderVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<style>
+    .status-slider {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .status-true {
+        background-color: greenyellow;
+    }
+
+    .status-false {
+        background-color: orangered;
+    }
+</style>
+
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Slider Table</h4>
+                        <div class="create-btn">
+                            <a asp-action="Create" class="btn btn-success btn-rounded btn-fw ">Create</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Logo</th>
+                                        <th>Create Date</th>
+                                        <th>Status</th>
+                                        <th>Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var slider in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="~/images/@slider.Logo" alt="image" style="with:100px;height:70px" />
+                                            </td>
+                                            <td>
+                                                @slider.CreatedDate
+                                            </td>
+                                            <td>
+                                                <div data-id="@slider.Id" class="status-slider @(slider.Status ? "status-true":"status-false")"></div>
+                                            </td>
+                                            <td>
+                                                <a asp-action="Detail" asp-route-id="@slider.Id" class="btn btn-inverse-primary btn-fw">Detail</a>
+                                                <a asp-action="Edit" asp-route-id="@slider.Id" class="btn btn-inverse-primary btn-fw">Edit</a>
+                                                <a href="#" class="btn btn-inverse-warning btn-fw">Edit</a>
+                                                <form style="display:inline-block" method="post" asp-action="Delete" asp-route-id="@slider.Id">
+                                                    <button type="submit" class="btn-primary btn-primary-danger btn-rounded btn-fw">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <a href="#" class="btn btn-inverse-success btn-fw">Create</a>
+    </div>
+
+
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
